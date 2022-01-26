@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "SGi Hacker Tools",
+  "version": "1.0.0",
+  "description": "Улучшает интерфейс small-games.info",
+  "content_scripts": [
+    {
+      "matches": ["https://small-games.info/*"],
+      "js": ["scripts.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

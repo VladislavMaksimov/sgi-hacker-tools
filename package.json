@@ -1,0 +1,21 @@
+{
+  "name": "sgi-hacker-tools",
+  "version": "1.0.0",
+  "description": "A browser extension that improves usability of ui of small-games.info",
+  "keywords": [
+    "extension",
+    "ui",
+    "usability"
+  ],
+  "author": "Vladislav Maksimov",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-esbuild": "^0.10.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  }
+}
