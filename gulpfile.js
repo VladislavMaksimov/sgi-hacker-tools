@@ -3,13 +3,18 @@ const clean = require("gulp-clean");
 const concatCss = require("gulp-concat-css");
 const autoprefixer = require("gulp-autoprefixer");
 const esBuild = require("gulp-esbuild");
+const prettier = require("gulp-prettier");
 
 const paths = {
   src: "src/",
   css: "src/styles/*.css",
   ts: {
     source: "src/scripts/app.ts",
+    allFiles: "src/scripts/**/*.ts",
     config: "./tsconfig.json",
+  },
+  js: {
+    gulpfile: "gulpfile.js",
   },
   manifest: "src/manifest.json",
   build: "build/",
@@ -46,4 +51,22 @@ const build = series(
   parallel(buildStyles, buildScripts, copyManifest)
 );
 
+const fixGulpfile = () =>
+  src(paths.js.gulpfile)
+    .pipe(prettier())
+    .pipe(dest((file) => file.base));
+
+const fixTs = () =>
+  src(paths.ts.allFiles)
+    .pipe(prettier())
+    .pipe(dest((file) => file.base));
+
+const fixCss = () =>
+  src(paths.css)
+    .pipe(prettier())
+    .pipe(dest((file) => file.base));
+
+const fix = parallel(fixGulpfile, fixTs, fixCss);
+
+exports.fix = fix;
 exports.default = build;
