@@ -1,0 +1,28 @@
+#add_comment {
+  padding: 16px;
+  text-align: initial;
+  line-height: 0;
+}
+
+#add_comment > p:nth-of-type(1),
+#add_comment > br {
+  display: none;
+}
+
+#add_comment textarea#message {
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+#send {
+  display: block;
+}
+
+#message-chars {
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.message-chars-alert {
+  color: #f83030;
+}
