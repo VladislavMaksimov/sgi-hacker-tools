@@ -1,5 +1,5 @@
 import { PATHS } from "./constants";
-import { addMessageCharsCounter } from "./features/addMessageCounter";
+import { addMessageCharsCounter } from "./features/messageCounter";
 
 const urlParams = new URLSearchParams(window.location.search);
 const page = urlParams.get("go");
