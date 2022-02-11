@@ -10,6 +10,7 @@
   "author": "Vladislav Maksimov",
   "license": "MIT",
   "devDependencies": {
+    "@types/chrome": "^0.0.178",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean": "^0.4.0",

@@ -8,7 +8,17 @@
       "matches": ["https://small-games.info/*"],
       "js": ["scripts.js"],
       "css": ["styles.css"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "tooltip.svg"
+      ],
+      "matches": [
+        "https://small-games.info/*"
+      ]
     }
   ]
 }

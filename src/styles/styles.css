@@ -11,18 +11,32 @@
 
 #add_comment textarea#message {
   box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+#add_comment textarea#message.no-mb {
   margin-bottom: 0;
 }
 
-#send {
+#add_comment input#send {
   display: block;
+  padding: 8px;
+  font-size: 12px;
 }
 
 #message-chars {
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 12px;
+  line-height: 28px;
 }
 
 .message-chars-alert {
   color: #f83030;
+}
+
+.tooltip-icon {
+  position: relative;
+  bottom: 2px;
+  width: 18px;
+  vertical-align: middle;
+  margin-left: 8px;
 }

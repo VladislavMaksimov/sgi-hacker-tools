@@ -4,6 +4,7 @@ const concatCss = require("gulp-concat-css");
 const autoprefixer = require("gulp-autoprefixer");
 const esBuild = require("gulp-esbuild");
 const prettier = require("gulp-prettier");
+const path = require("path");
 
 const paths = {
   src: "src/",
@@ -16,6 +17,7 @@ const paths = {
   js: {
     gulpfile: "gulpfile.js",
   },
+  assets: "src/assets/*",
   manifest: "src/manifest.json",
   build: "build/",
 };
@@ -46,9 +48,11 @@ const buildScripts = () =>
 
 const copyManifest = () => src(paths.manifest).pipe(dest(paths.build));
 
+const copyAssets = () => src(paths.assets).pipe(dest(paths.build));
+
 const build = series(
   clearDest,
-  parallel(buildStyles, buildScripts, copyManifest)
+  parallel(buildStyles, buildScripts, copyManifest, copyAssets)
 );
 
 const fixGulpfile = () =>
