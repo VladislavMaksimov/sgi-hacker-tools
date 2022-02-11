@@ -1,6 +1,5 @@
 import { insertAfter, createTooltipIcon } from "../../utils";
 import { MAX_CHARS, MESSAGE_MAX_LENGTH, TEXT } from "./constants";
-import queueInsert = chrome.cast.media.timeout.queueInsert;
 
 export const addMessageCharsCounter = () => {
   const message = document.getElementById("message") as HTMLTextAreaElement;
