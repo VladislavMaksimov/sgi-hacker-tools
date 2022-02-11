@@ -1,10 +1,9 @@
-const { series, parallel, src, dest } = require("gulp");
+const { series, parallel, src, dest, watch } = require("gulp");
 const clean = require("gulp-clean");
 const concatCss = require("gulp-concat-css");
 const autoprefixer = require("gulp-autoprefixer");
 const esBuild = require("gulp-esbuild");
 const prettier = require("gulp-prettier");
-const path = require("path");
 
 const paths = {
   src: "src/",
@@ -72,5 +71,13 @@ const fixCss = () =>
 
 const fix = parallel(fixGulpfile, fixTs, fixCss);
 
+const watchBuild = () =>
+  watch(
+    ["src/**/*.ts", "src/**/*.css"],
+    { events: ["add", "change", "unlink"] },
+    build
+  );
+
 exports.fix = fix;
-exports.default = build;
+exports.build = build;
+exports.default = watchBuild;
