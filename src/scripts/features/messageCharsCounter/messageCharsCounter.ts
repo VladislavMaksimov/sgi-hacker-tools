@@ -62,11 +62,13 @@ export const addMessageCharsCounter = () => {
     message.addEventListener("blur", removeCounter);
 
     const sendButton = document.getElementById("send");
-    if (sendButton) {
-      sendButton.addEventListener("mouseenter", restrictCounterRemoving);
-      sendButton.addEventListener("mouseout", allowCounterRemoving);
-      sendButton.addEventListener("click", handleSendButtonClick);
-    }
+    if (sendButton) sendButton.classList.add("sht-button");
+    const buttons = document.querySelectorAll("#add_comment .sht-button");
+    buttons.forEach((button) => {
+      button.addEventListener("mouseenter", restrictCounterRemoving);
+      button.addEventListener("mouseout", allowCounterRemoving);
+      button.addEventListener("click", handleSendButtonClick);
+    });
 
     const quoteSelectionButton = document.querySelector("#quoteSelection > a");
     // event handlers run synchronously so no need to worry about other handlers

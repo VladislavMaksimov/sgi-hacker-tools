@@ -4,6 +4,7 @@ const concatCss = require("gulp-concat-css");
 const autoprefixer = require("gulp-autoprefixer");
 const esBuild = require("gulp-esbuild");
 const prettier = require("gulp-prettier");
+const path = require("path");
 
 const paths = {
   src: "src/",
@@ -73,7 +74,7 @@ const fix = parallel(fixGulpfile, fixTs, fixCss);
 
 const watchBuild = () =>
   watch(
-    ["src/**/*.ts", "src/**/*.css"],
+    [paths.ts.allFiles, paths.css],
     { events: ["add", "change", "unlink"] },
     build
   );

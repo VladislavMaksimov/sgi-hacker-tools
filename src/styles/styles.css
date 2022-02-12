@@ -18,7 +18,8 @@
   margin-bottom: 0;
 }
 
-#add_comment input#send {
+#add_comment input#send,
+.sht-button {
   display: block;
   padding: 8px;
   font-size: 12px;
@@ -39,4 +40,21 @@
   width: 18px;
   vertical-align: middle;
   margin-left: 8px;
+}
+
+.tooltip-icon-large {
+  width: 22px;
+  vertical-align: middle;
+}
+
+.sht-row-wrapper {
+  display: flex;
+}
+
+.sht-row-wrapper > *:not(:last-child) {
+  margin-right: 8px;
+}
+
+.mt-lg {
+  margin-top: 16px;
 }
