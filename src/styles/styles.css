@@ -1,3 +1,5 @@
+/*** VANILLA SGI SELECTORS ***/
+
 #add_comment {
   padding: 16px;
   text-align: initial;
@@ -14,38 +16,19 @@
   margin-bottom: 16px;
 }
 
-#add_comment textarea#message.no-mb {
-  margin-bottom: 0;
-}
-
-#add_comment input#send,
-.sht-button {
+#add_comment input#send {
   display: block;
   padding: 8px;
   font-size: 12px;
 }
 
-#message-chars {
-  font-size: 12px;
-  line-height: 28px;
+/* header's navigation links */
+#top-mobile > a,
+#top-nav > ul a {
+  text-transform: uppercase;
 }
 
-.message-chars-alert {
-  color: #f83030;
-}
-
-.tooltip-icon {
-  position: relative;
-  bottom: 2px;
-  width: 18px;
-  vertical-align: middle;
-  margin-left: 8px;
-}
-
-.tooltip-icon-large {
-  width: 22px;
-  vertical-align: middle;
-}
+/*** SGI HACKER TOOLS SELECTORS ***/
 
 .sht-row-wrapper {
   display: flex;
@@ -55,14 +38,52 @@
   margin-right: 8px;
 }
 
-.mt-lg {
+.sht-mt-lg {
   margin-top: 16px;
+}
+
+.sht-no-mb,
+#add_comment textarea#message.sht-no-mb {
+  margin-bottom: 0;
+}
+
+.sht-button {
+  display: block;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.sht-tooltip-icon {
+  position: relative;
+  bottom: 2px;
+  width: 18px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.sht-tooltip-icon-large {
+  width: 22px;
+  vertical-align: middle;
+}
+
+/* message's (comment's) chars counter */
+#sht-message-chars {
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.sht-message-chars-alert {
+  color: #f83030;
+}
+
+.sht-mini-message-chars-alert {
+  color: #e1b404;
 }
 
 #sht-send-me-button {
   background-color: #e3cc78;
 }
 
-.mini-message-chars-alert {
-  color: #e1b404;
+.sht-torrent-link {
+  font-size: 20px;
 }

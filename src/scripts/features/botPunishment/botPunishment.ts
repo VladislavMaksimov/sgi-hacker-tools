@@ -20,7 +20,7 @@ export const addBotPunishment = () => {
   };
 
   const punishBotButton = document.createElement("button");
-  punishBotButton.classList.add("sht-button", "mt-lg");
+  punishBotButton.classList.add("sht-button", "sht-mt-lg");
   punishBotButton.innerText = TEXT.PUNISH;
   punishBotButton.addEventListener("click", handlePunishClick);
 

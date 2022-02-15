@@ -16,13 +16,13 @@ export const addMessageCharsCounter = () => {
   const charsTooltipIcon = createTooltipIcon(TEXT.CHARS_COUNTER_TOOLTIP);
 
   const messageChars = document.createElement("p");
-  messageChars.id = "message-chars";
+  messageChars.id = "sht-message-chars";
   messageChars.innerText = TEXT.CHARS_COUNTER;
   messageChars.appendChild(messageCharsCounter);
   messageChars.appendChild(charsTooltipIcon);
 
   const addCounter = () => {
-    message.classList.add("no-mb");
+    message.classList.add("sht-no-mb");
     insertAfter(messageChars, message);
     message.addEventListener("input", countCharacters);
   };
@@ -34,21 +34,21 @@ export const addMessageCharsCounter = () => {
 
   const removeCounter = () => {
     if (counterRemovingRestricted) return;
-    message.classList.remove("no-mb");
+    message.classList.remove("sht-no-mb");
     messageChars.remove();
     message.removeEventListener("input", countCharacters);
   };
 
   const toggleCharsCountAlert = (charactersCount: number) => {
     if (charactersCount > MAX_CHARS) {
-      messageChars.classList.add("message-chars-alert");
-      messageChars.classList.remove("mini-message-chars-alert");
+      messageChars.classList.add("sht-message-chars-alert");
+      messageChars.classList.remove("sht-mini-message-chars-alert");
     } else if (charactersCount > MAX_CHARS_MINI_MESSAGE) {
-      messageChars.classList.remove("message-chars-alert");
-      messageChars.classList.add("mini-message-chars-alert");
+      messageChars.classList.remove("sht-message-chars-alert");
+      messageChars.classList.add("sht-mini-message-chars-alert");
     } else {
-      messageChars.classList.remove("message-chars-alert");
-      messageChars.classList.remove("mini-message-chars-alert");
+      messageChars.classList.remove("sht-message-chars-alert");
+      messageChars.classList.remove("sht-mini-message-chars-alert");
     }
   };
 
@@ -60,7 +60,7 @@ export const addMessageCharsCounter = () => {
 
   const clearCharsCounter = () => {
     messageCharsCounter.innerText = "0";
-    messageChars.classList.remove("message-chars-alert");
+    messageChars.classList.remove("sht-message-chars-alert");
   };
 
   const handleSendButtonClick = () => {
