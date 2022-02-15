@@ -3,6 +3,7 @@ import {
   addSendMeButton,
   addMessageCharsCounter,
   addBotPunishment,
+  increaseTorrentLinkSize,
 } from "./features";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     case PATHS.GAME:
       addSendMeButton();
       addMessageCharsCounter();
+      increaseTorrentLinkSize();
       break;
     case PATHS.USER:
       const user = urlParams.get("uid");
