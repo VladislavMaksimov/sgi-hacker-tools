@@ -1,5 +1,10 @@
 import { insertAfter, createTooltipIcon } from "../../utils";
-import { MAX_CHARS, MESSAGE_MAX_LENGTH, TEXT } from "./constants";
+import {
+  MAX_CHARS,
+  MAX_CHARS_MINI_MESSAGE,
+  MESSAGE_MAX_LENGTH,
+  TEXT,
+} from "./constants";
 
 export const addMessageCharsCounter = () => {
   const message = document.getElementById("message") as HTMLTextAreaElement;
@@ -35,9 +40,16 @@ export const addMessageCharsCounter = () => {
   };
 
   const toggleCharsCountAlert = (charactersCount: number) => {
-    if (charactersCount > MAX_CHARS)
+    if (charactersCount > MAX_CHARS) {
       messageChars.classList.add("message-chars-alert");
-    else messageChars.classList.remove("message-chars-alert");
+      messageChars.classList.remove("mini-message-chars-alert");
+    } else if (charactersCount > MAX_CHARS_MINI_MESSAGE) {
+      messageChars.classList.remove("message-chars-alert");
+      messageChars.classList.add("mini-message-chars-alert");
+    } else {
+      messageChars.classList.remove("message-chars-alert");
+      messageChars.classList.remove("mini-message-chars-alert");
+    }
   };
 
   const countCharacters = () => {

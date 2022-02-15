@@ -58,3 +58,11 @@
 .mt-lg {
   margin-top: 16px;
 }
+
+#sht-send-me-button {
+  background-color: #e3cc78;
+}
+
+.mini-message-chars-alert {
+  color: #e1b404;
+}
