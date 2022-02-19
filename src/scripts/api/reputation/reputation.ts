@@ -1,4 +1,4 @@
-import { BASE, REP_PAGE, DECREASE } from "./constants";
+import { REP_PAGE, DECREASE } from "./constants";
 
 export const decRep = (
   victimId: string | number,
@@ -7,7 +7,7 @@ export const decRep = (
   fromPageId: number,
   cb: (response: Response) => void
 ) => {
-  const url = new URL(BASE + REP_PAGE);
+  const url = new URL(process.env.BASE + REP_PAGE);
   url.search = new URLSearchParams({
     uid: String(myId),
     to: String(victimId),
