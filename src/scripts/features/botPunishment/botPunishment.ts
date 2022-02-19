@@ -13,7 +13,7 @@ export const addBotPunishment = () => {
   const handlePunishClick = () => {
     const myId = getMyId();
     if (!myId) return;
-    const callback = createAlertCallback(TEXT.PUNISH_SUCCESS, TEXT.PUNISH_FAIL);
+    const callback = createAlertCallback(TEXT.PUNISH_FAIL);
     const punishment = getRandomPunishPhrase();
     decRep(USERS.BOT, myId, punishment, PAGE_ID, callback);
     location.reload();

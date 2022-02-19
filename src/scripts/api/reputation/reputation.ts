@@ -18,12 +18,10 @@ export const decRep = (
   fetch(url.toString()).then((response) => cb(response));
 };
 
-export const createAlertCallback = (successText: string, failText: string) => {
+export const createAlertCallback = (failText: string) => {
   return function (response: Response) {
     response.json().then((json) => {
-      if (json === "") {
-        alert(successText);
-      } else alert(failText);
+      if (json !== "") alert(failText);
     });
   };
 };
