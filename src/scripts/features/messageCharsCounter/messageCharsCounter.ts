@@ -1,5 +1,10 @@
 import { insertAfter, createTooltipIcon } from "../../utils";
-import { MAX_CHARS, MESSAGE_MAX_LENGTH, TEXT } from "./constants";
+import {
+  MAX_CHARS,
+  MAX_CHARS_MINI_MESSAGE,
+  MESSAGE_MAX_LENGTH,
+  TEXT,
+} from "./constants";
 
 export const addMessageCharsCounter = () => {
   const message = document.getElementById("message") as HTMLTextAreaElement;
@@ -11,13 +16,13 @@ export const addMessageCharsCounter = () => {
   const charsTooltipIcon = createTooltipIcon(TEXT.CHARS_COUNTER_TOOLTIP);
 
   const messageChars = document.createElement("p");
-  messageChars.id = "message-chars";
+  messageChars.id = "sht-message-chars";
   messageChars.innerText = TEXT.CHARS_COUNTER;
   messageChars.appendChild(messageCharsCounter);
   messageChars.appendChild(charsTooltipIcon);
 
   const addCounter = () => {
-    message.classList.add("no-mb");
+    message.classList.add("sht-no-mb");
     insertAfter(messageChars, message);
     message.addEventListener("input", countCharacters);
   };
@@ -29,15 +34,22 @@ export const addMessageCharsCounter = () => {
 
   const removeCounter = () => {
     if (counterRemovingRestricted) return;
-    message.classList.remove("no-mb");
+    message.classList.remove("sht-no-mb");
     messageChars.remove();
     message.removeEventListener("input", countCharacters);
   };
 
   const toggleCharsCountAlert = (charactersCount: number) => {
-    if (charactersCount > MAX_CHARS)
-      messageChars.classList.add("message-chars-alert");
-    else messageChars.classList.remove("message-chars-alert");
+    if (charactersCount > MAX_CHARS) {
+      messageChars.classList.add("sht-message-chars-alert");
+      messageChars.classList.remove("sht-mini-message-chars-alert");
+    } else if (charactersCount > MAX_CHARS_MINI_MESSAGE) {
+      messageChars.classList.remove("sht-message-chars-alert");
+      messageChars.classList.add("sht-mini-message-chars-alert");
+    } else {
+      messageChars.classList.remove("sht-message-chars-alert");
+      messageChars.classList.remove("sht-mini-message-chars-alert");
+    }
   };
 
   const countCharacters = () => {
@@ -48,7 +60,7 @@ export const addMessageCharsCounter = () => {
 
   const clearCharsCounter = () => {
     messageCharsCounter.innerText = "0";
-    messageChars.classList.remove("message-chars-alert");
+    messageChars.classList.remove("sht-message-chars-alert");
   };
 
   const handleSendButtonClick = () => {
@@ -62,11 +74,13 @@ export const addMessageCharsCounter = () => {
     message.addEventListener("blur", removeCounter);
 
     const sendButton = document.getElementById("send");
-    if (sendButton) {
-      sendButton.addEventListener("mouseenter", restrictCounterRemoving);
-      sendButton.addEventListener("mouseout", allowCounterRemoving);
-      sendButton.addEventListener("click", handleSendButtonClick);
-    }
+    if (sendButton) sendButton.classList.add("sht-button");
+    const buttons = document.querySelectorAll("#add_comment .sht-button");
+    buttons.forEach((button) => {
+      button.addEventListener("mouseenter", restrictCounterRemoving);
+      button.addEventListener("mouseout", allowCounterRemoving);
+      button.addEventListener("click", handleSendButtonClick);
+    });
 
     const quoteSelectionButton = document.querySelector("#quoteSelection > a");
     // event handlers run synchronously so no need to worry about other handlers
