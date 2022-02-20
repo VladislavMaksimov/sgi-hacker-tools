@@ -66,6 +66,11 @@
   vertical-align: middle;
 }
 
+.sht-tooltip-icon-small {
+  width: 16px;
+  vertical-align: middle;
+}
+
 /* message's (comment's) chars counter */
 #sht-message-chars {
   font-size: 12px;
@@ -86,4 +91,26 @@
 
 .sht-torrent-link {
   font-size: 20px;
+}
+
+.sht-rep-changer {
+  cursor: pointer;
+}
+
+.sht-menu-item {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.sht-menu-item > *:not(:last-child) {
+  margin-right: 4px;
+}
+
+.sht-menu-checkbox {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
 }

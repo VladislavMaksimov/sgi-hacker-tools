@@ -4,12 +4,15 @@ import {
   addMessageCharsCounter,
   addBotPunishment,
   increaseTorrentLinkSize,
+  addSadisticRepChange,
+  addShtMenu,
 } from "./features";
 
 const urlParams = new URLSearchParams(window.location.search);
 const page = urlParams.get("go");
 
 document.addEventListener("DOMContentLoaded", () => {
+  addShtMenu();
   switch (page) {
     case PATHS.FAQ:
       addSendMeButton();
@@ -25,6 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
       switch (user) {
         case USERS.BOT:
           addBotPunishment();
+          break;
+        default:
+          addSadisticRepChange();
           break;
       }
       break;
