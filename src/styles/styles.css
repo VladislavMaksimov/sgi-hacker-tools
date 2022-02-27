@@ -1,7 +1,22 @@
+:root {
+  --color-primary: #e3cc78;
+  --color-alert: #f83030;
+  --color-warning: #e1b404;
+
+  --indent-sm: 4px;
+  --indent-md: 8px;
+  --indent-lg: 16px;
+
+  --font-size: 12px;
+  --line-height: 20px;
+  --font-size-lg: 20px;
+  --line-height-lg: 28px;
+}
+
 /*** VANILLA SGI SELECTORS ***/
 
 #add_comment {
-  padding: 16px;
+  padding: var(--indent-lg);
   text-align: initial;
   line-height: 0;
 }
@@ -13,13 +28,13 @@
 
 #add_comment textarea#message {
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin-bottom: var(--indent-lg);
 }
 
 #add_comment input#send {
   display: block;
-  padding: 8px;
-  font-size: 12px;
+  padding: var(--indent-md);
+  font-size: var(--font-size);
 }
 
 /* header's navigation links */
@@ -35,11 +50,11 @@
 }
 
 .sht-row-wrapper > *:not(:last-child) {
-  margin-right: 8px;
+  margin-right: var(--indent-md);
 }
 
 .sht-mt-lg {
-  margin-top: 16px;
+  margin-top: var(--indent-lg);
 }
 
 .sht-no-mb,
@@ -49,8 +64,8 @@
 
 .sht-button {
   display: block;
-  padding: 8px;
-  font-size: 12px;
+  padding: var(--indent-md);
+  font-size: var(--font-size);
 }
 
 .sht-tooltip-icon {
@@ -58,7 +73,7 @@
   bottom: 2px;
   width: 18px;
   vertical-align: middle;
-  margin-left: 8px;
+  margin-left: var(--indent-md);
 }
 
 .sht-tooltip-icon-large {
@@ -73,24 +88,24 @@
 
 /* message's (comment's) chars counter */
 #sht-message-chars {
-  font-size: 12px;
-  line-height: 28px;
+  font-size: var(--font-size);
+  line-height: var(--line-height-lg);
 }
 
 .sht-message-chars-alert {
-  color: #f83030;
+  color: var(--color-alert);
 }
 
 .sht-mini-message-chars-alert {
-  color: #e1b404;
+  color: var(--color-warning);
 }
 
 #sht-send-me-button {
-  background-color: #e3cc78;
+  background-color: var(--color-primary);
 }
 
 .sht-torrent-link {
-  font-size: 20px;
+  font-size: var(--font-size-lg);
 }
 
 .sht-rep-changer {
@@ -100,13 +115,13 @@
 .sht-menu-item {
   display: flex;
   align-items: center;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
   cursor: pointer;
 }
 
 .sht-menu-item > *:not(:last-child) {
-  margin-right: 4px;
+  margin-right: var(--indent-sm);
 }
 
 .sht-menu-checkbox {
