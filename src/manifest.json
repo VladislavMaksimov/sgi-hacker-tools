@@ -14,7 +14,9 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "tooltip.svg"
+        "tooltip.svg",
+        "user-ban.svg",
+        "user-ban-hover.svg"
       ],
       "matches": [
         "https://small-games.info/*"

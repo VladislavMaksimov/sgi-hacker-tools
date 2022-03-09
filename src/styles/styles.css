@@ -1,6 +1,7 @@
 :root {
   --color-primary: #e3cc78;
   --color-alert: #f83030;
+  --color-alert-hover: #f8306c;
   --color-warning: #e1b404;
 
   --indent-sm: 4px;
@@ -41,6 +42,10 @@
 #top-mobile > a,
 #top-nav > ul a {
   text-transform: uppercase;
+}
+
+#board .name > * {
+  margin: 0 var(--indent-sm);
 }
 
 /*** SGI HACKER TOOLS SELECTORS ***/
@@ -128,4 +133,29 @@
   position: relative;
   top: 1px;
   cursor: pointer;
+}
+
+.sht-ban-icon {
+  width: 18px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.sht-ban-user {
+  color: var(--color-alert);
+  font-weight: bold;
+  margin-left: var(--indent-lg);
+  cursor: pointer;
+}
+
+.sht-ban-user:hover {
+  color: var(--color-alert-hover);
+}
+
+.sht-ban-user > .sht-ban-icon {
+  vertical-align: bottom;
+}
+
+.sht-ban-user > *:not(:last-child) {
+  margin-right: var(--indent-sm);
 }
