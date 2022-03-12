@@ -16,7 +16,9 @@
       "resources": [
         "tooltip.svg",
         "user-ban.svg",
-        "user-ban-hover.svg"
+        "user-ban-hover.svg",
+        "user-hide.svg",
+        "user-hide-hover.svg"
       ],
       "matches": [
         "https://small-games.info/*"

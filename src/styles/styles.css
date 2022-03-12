@@ -3,6 +3,8 @@
   --color-alert: #f83030;
   --color-alert-hover: #f8306c;
   --color-warning: #e1b404;
+  --color-action: #a49580;
+  --color-action-hover: #b6ff00;
 
   --indent-sm: 4px;
   --indent-md: 8px;
@@ -135,27 +137,42 @@
   cursor: pointer;
 }
 
-.sht-ban-icon {
+.sht-ban-icon,
+.sht-hide-icon {
   width: 18px;
   vertical-align: middle;
   cursor: pointer;
 }
 
-.sht-ban-user {
-  color: var(--color-alert);
+.sht-ban-user,
+.sht-hide-user {
   font-weight: bold;
   margin-left: var(--indent-lg);
   cursor: pointer;
+}
+
+.sht-ban-user {
+  color: var(--color-alert);
 }
 
 .sht-ban-user:hover {
   color: var(--color-alert-hover);
 }
 
-.sht-ban-user > .sht-ban-icon {
+.sht-hide-user {
+  color: var(--color-action);
+}
+
+.sht-hide-user:hover {
+  color: var(--color-action-hover);
+}
+
+.sht-ban-user > .sht-ban-icon,
+.sht-hide-user > .sht-hide-icon {
   vertical-align: bottom;
 }
 
-.sht-ban-user > *:not(:last-child) {
+.sht-ban-user > *:not(:last-child),
+.sht-hide-user > *:not(:last-child) {
   margin-right: var(--indent-sm);
 }
