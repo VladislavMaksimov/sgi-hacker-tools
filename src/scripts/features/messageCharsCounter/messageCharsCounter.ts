@@ -11,7 +11,13 @@ export const addMessageCharsCounter = () => {
   message.maxLength = MESSAGE_MAX_LENGTH;
 
   const messageCharsCounter = document.createElement("span");
-  messageCharsCounter.innerText = String(message.value.length);
+  const countChars = () => {
+    messageCharsCounter.innerText = String(message.value.length);
+  };
+  countChars();
+  window.addEventListener("load", () => {
+    if (messageCharsCounter) countChars();
+  });
 
   const charsTooltipIcon = createTooltipIcon(TEXT.CHARS_COUNTER_TOOLTIP);
 
@@ -43,7 +49,7 @@ export const addMessageCharsCounter = () => {
   const countCharacters = () => {
     const charactersCount = message.value.length;
     toggleCharsCountAlert(charactersCount);
-    messageCharsCounter.innerText = String(message.value.length);
+    countChars();
   };
 
   const clearCharsCounter = () => {
@@ -51,20 +57,18 @@ export const addMessageCharsCounter = () => {
     messageChars.classList.remove("sht-message-chars-alert");
   };
 
-  if (message) {
-    addCounter();
+  addCounter();
 
-    const sendButton = document.getElementById("send");
-    if (sendButton) sendButton.classList.add("sht-button");
-    const buttons = document.querySelectorAll("#add_comment .sht-button");
-    buttons.forEach((button) => {
-      button.addEventListener("click", clearCharsCounter);
-    });
+  const sendButton = document.getElementById("send");
+  if (sendButton) sendButton.classList.add("sht-button");
+  const buttons = document.querySelectorAll("#add_comment .sht-button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", clearCharsCounter);
+  });
 
-    const quoteSelectionButton = document.querySelector("#quoteSelection > a");
-    // event handlers run synchronously so no need to worry about other handlers
-    if (quoteSelectionButton) {
-      quoteSelectionButton.addEventListener("click", countCharacters);
-    }
+  const quoteSelectionButton = document.querySelector("#quoteSelection > a");
+  // event handlers run synchronously so no need to worry about other handlers
+  if (quoteSelectionButton) {
+    quoteSelectionButton.addEventListener("click", countCharacters);
   }
 };
