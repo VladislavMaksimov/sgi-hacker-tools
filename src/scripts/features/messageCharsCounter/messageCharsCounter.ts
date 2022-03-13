@@ -1,7 +1,7 @@
 import { insertAfter, createTooltipIcon } from "../../utils";
 import {
-  MAX_CHARS,
-  MAX_CHARS_MINI_MESSAGE,
+  DANGER_CHARS,
+  ALERT_CHARS,
   MESSAGE_MAX_LENGTH,
   TEXT,
 } from "./constants";
@@ -27,23 +27,11 @@ export const addMessageCharsCounter = () => {
     message.addEventListener("input", countCharacters);
   };
 
-  let counterRemovingRestricted = false;
-
-  const restrictCounterRemoving = () => (counterRemovingRestricted = true);
-  const allowCounterRemoving = () => (counterRemovingRestricted = false);
-
-  const removeCounter = () => {
-    if (counterRemovingRestricted) return;
-    message.classList.remove("sht-no-mb");
-    messageChars.remove();
-    message.removeEventListener("input", countCharacters);
-  };
-
   const toggleCharsCountAlert = (charactersCount: number) => {
-    if (charactersCount > MAX_CHARS) {
+    if (charactersCount > DANGER_CHARS) {
       messageChars.classList.add("sht-message-chars-alert");
       messageChars.classList.remove("sht-mini-message-chars-alert");
-    } else if (charactersCount > MAX_CHARS_MINI_MESSAGE) {
+    } else if (charactersCount > ALERT_CHARS) {
       messageChars.classList.remove("sht-message-chars-alert");
       messageChars.classList.add("sht-mini-message-chars-alert");
     } else {
@@ -63,23 +51,14 @@ export const addMessageCharsCounter = () => {
     messageChars.classList.remove("sht-message-chars-alert");
   };
 
-  const handleSendButtonClick = () => {
-    clearCharsCounter();
-    allowCounterRemoving();
-    removeCounter();
-  };
-
   if (message) {
-    message.addEventListener("focus", addCounter);
-    message.addEventListener("blur", removeCounter);
+    addCounter();
 
     const sendButton = document.getElementById("send");
     if (sendButton) sendButton.classList.add("sht-button");
     const buttons = document.querySelectorAll("#add_comment .sht-button");
     buttons.forEach((button) => {
-      button.addEventListener("mouseenter", restrictCounterRemoving);
-      button.addEventListener("mouseout", allowCounterRemoving);
-      button.addEventListener("click", handleSendButtonClick);
+      button.addEventListener("click", clearCharsCounter);
     });
 
     const quoteSelectionButton = document.querySelector("#quoteSelection > a");

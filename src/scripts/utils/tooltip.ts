@@ -1,6 +1,7 @@
 export const createTooltipIcon = (
   text: string,
-  size: "default" | "small" | "large" = "default"
+  size: "default" | "small" | "large" = "default",
+  id?: string
 ): HTMLImageElement => {
   const tooltipIcon = document.createElement("img");
   tooltipIcon.src = chrome.runtime.getURL("tooltip.svg");
@@ -19,5 +20,6 @@ export const createTooltipIcon = (
       break;
   }
   tooltipIcon.setAttribute("title", text);
+  if (id) tooltipIcon.id = id;
   return tooltipIcon;
 };
