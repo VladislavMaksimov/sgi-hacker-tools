@@ -1,25 +1,25 @@
 import {
-  createBanHideButton,
-  createBanHideUserIcon,
+  createBlockHideButton,
+  createBlockHideUserIcon,
   getIdFromParams,
   getMyId,
   getURLId,
   insertAfter,
 } from "../../utils";
-import { TEXT_BAN_USER, TEXT_HIDE_SELF } from "./constants";
+import { TEXT_BLOCK_USER, TEXT_HIDE_SELF } from "./constants";
 
-export const addBanHideUserIcon = () => {
+export const addBlockHideUserIcon = () => {
   const userNames = document.querySelectorAll(".name > a:first-of-type");
   userNames.forEach((userName) => {
     const myId = getMyId();
     const userId = getIdFromParams((userName as HTMLAnchorElement).href);
-    const action = myId === userId ? "hide" : "ban";
-    const icon = createBanHideUserIcon(action);
+    const action = myId === userId ? "hide" : "block";
+    const icon = createBlockHideUserIcon(action);
     insertAfter(icon, userName);
   });
 };
 
-export const addBanHideIconsObserver = () => {
+export const addBlockHideIconsObserver = () => {
   const board = document.getElementById("board");
   const observer = new MutationObserver((mutations, observer) => {
     const addedNodes = Array.from(mutations[0].addedNodes);
@@ -29,7 +29,7 @@ export const addBanHideIconsObserver = () => {
       )
     )
       return;
-    addBanHideUserIcon();
+    addBlockHideUserIcon();
   });
   if (board)
     observer.observe(board, {
@@ -40,7 +40,7 @@ export const addBanHideIconsObserver = () => {
     });
 };
 
-export const addBanHideUserOnUserPage = () => {
+export const addBlockHideUserOnUserPage = () => {
   const sendPrivateMessage = document
     .querySelector(".w")!
     .querySelector(".popup");
@@ -48,12 +48,12 @@ export const addBanHideUserOnUserPage = () => {
 
   // on user's page
   if (getMyId() === getURLId()) {
-    const hideButton = createBanHideButton(TEXT_HIDE_SELF, "hide");
+    const hideButton = createBlockHideButton(TEXT_HIDE_SELF, "hide");
     insertAfter(hideButton, sendPrivateMessage);
     return;
   }
 
   // on another user's page
-  const banButton = createBanHideButton(TEXT_BAN_USER, "ban");
-  insertAfter(banButton, sendPrivateMessage);
+  const blockButton = createBlockHideButton(TEXT_BLOCK_USER, "block");
+  insertAfter(blockButton, sendPrivateMessage);
 };

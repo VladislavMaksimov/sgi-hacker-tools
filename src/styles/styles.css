@@ -137,25 +137,25 @@
   cursor: pointer;
 }
 
-.sht-ban-icon,
+.sht-block-icon,
 .sht-hide-icon {
   width: 18px;
   vertical-align: middle;
   cursor: pointer;
 }
 
-.sht-ban-user,
+.sht-block-user,
 .sht-hide-user {
   font-weight: bold;
   margin-left: var(--indent-lg);
   cursor: pointer;
 }
 
-.sht-ban-user {
+.sht-block-user {
   color: var(--color-alert);
 }
 
-.sht-ban-user:hover {
+.sht-block-user:hover {
   color: var(--color-alert-hover);
 }
 
@@ -167,12 +167,12 @@
   color: var(--color-action-hover);
 }
 
-.sht-ban-user > .sht-ban-icon,
+.sht-block-user > .sht-block-icon,
 .sht-hide-user > .sht-hide-icon {
   vertical-align: bottom;
 }
 
-.sht-ban-user > *:not(:last-child),
+.sht-block-user > *:not(:last-child),
 .sht-hide-user > *:not(:last-child) {
   margin-right: var(--indent-sm);
 }

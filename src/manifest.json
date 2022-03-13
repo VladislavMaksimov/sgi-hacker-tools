@@ -15,8 +15,8 @@
     {
       "resources": [
         "tooltip.svg",
-        "user-ban.svg",
-        "user-ban-hover.svg",
+        "user-block.svg",
+        "user-block-hover.svg",
         "user-hide.svg",
         "user-hide-hover.svg"
       ],

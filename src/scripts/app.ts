@@ -6,9 +6,9 @@ import {
   increaseTorrentLinkSize,
   addSadisticRepChange,
   addShtMenu,
-  addBanHideUserIcon,
-  addBanHideIconsObserver,
-  addBanHideUserOnUserPage,
+  addBlockHideUserIcon,
+  addBlockHideIconsObserver,
+  addBlockHideUserOnUserPage,
 } from "./features";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -18,17 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
   addShtMenu();
   switch (page) {
     case PATHS.FAQ:
-      addBanHideUserIcon();
+      addBlockHideUserIcon();
       addSendMeButton();
       addMessageCharsCounter();
-      addBanHideIconsObserver();
+      addBlockHideIconsObserver();
       break;
     case PATHS.GAME:
-      addBanHideUserIcon();
+      addBlockHideUserIcon();
       addSendMeButton();
       addMessageCharsCounter();
       increaseTorrentLinkSize();
-      addBanHideIconsObserver();
+      addBlockHideIconsObserver();
       break;
     case PATHS.USER:
       const user = urlParams.get("uid");
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
           addBotPunishment();
           break;
         default:
-          addBanHideUserOnUserPage();
+          addBlockHideUserOnUserPage();
           addSadisticRepChange();
           break;
       }

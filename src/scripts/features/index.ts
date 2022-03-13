@@ -5,7 +5,7 @@ export { increaseTorrentLinkSize } from "./downloadLinks/downloadLinks";
 export { addSadisticRepChange } from "./sadisticRepChange/sadisticRepChange";
 export { addShtMenu } from "./shtMenu/shtMenu";
 export {
-  addBanHideUserIcon,
-  addBanHideUserOnUserPage,
-  addBanHideIconsObserver,
-} from "./banHideUser/banHideUser";
+  addBlockHideUserIcon,
+  addBlockHideUserOnUserPage,
+  addBlockHideIconsObserver,
+} from "./blockHideUser/blockHideUser";
