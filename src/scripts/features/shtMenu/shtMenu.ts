@@ -25,6 +25,7 @@ export const addShtMenu = () => {
   content.appendChild(sadisticRepChange);
 
   const menu = document.createElement("section");
+  menu.id = "sht-menu";
   menu.append(headingWrapper, arrow, content);
 
   const sidebar = document.getElementById("r-sidebar");
