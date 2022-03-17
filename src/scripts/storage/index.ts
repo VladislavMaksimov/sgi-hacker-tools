@@ -1,1 +1,2 @@
-export { getBlackList, blockHideUser, unBlockHideUser } from "./blockHideUsers";
+export * from "./blockHideUsers";
+export * from "./killChatBro";

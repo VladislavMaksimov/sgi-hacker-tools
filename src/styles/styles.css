@@ -176,3 +176,7 @@
 .sht-hide-user > *:not(:last-child) {
   margin-right: var(--indent-sm);
 }
+
+.sht-hide {
+  display: none;
+}

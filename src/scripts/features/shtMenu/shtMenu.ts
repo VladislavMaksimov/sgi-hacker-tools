@@ -1,5 +1,6 @@
 import { TEXT } from "./constants";
 import { createShtMenuItem } from "../../utils";
+import { addChatBroKiller } from "../killChatBro/killChatBro";
 
 export const addShtMenu = () => {
   const headingWrapper = document.createElement("h2");
@@ -20,9 +21,11 @@ export const addShtMenu = () => {
     TEXT.SADISTIC_REP_CHANGE.TOOLTIP_TEXT
   );
 
+  const chatBroKiller = addChatBroKiller();
+
   const content = document.createElement("div");
   content.classList.add("w", "center");
-  content.appendChild(sadisticRepChange);
+  content.append(sadisticRepChange, chatBroKiller);
 
   const menu = document.createElement("section");
   menu.id = "sht-menu";

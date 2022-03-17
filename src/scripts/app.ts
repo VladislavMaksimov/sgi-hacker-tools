@@ -9,6 +9,7 @@ import {
   addBlockHideUserIcon,
   addBlockHideIconsObserver,
   addBlockHideUserOnUserPage,
+  killOrResurrectChatBro,
 } from "./features";
 import { renderBlackList } from "./features/blockHideUser/blockHideUser";
 
@@ -16,6 +17,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const page = urlParams.get("go");
 
 document.addEventListener("DOMContentLoaded", () => {
+  killOrResurrectChatBro();
   addShtMenu();
   renderBlackList();
   switch (page) {

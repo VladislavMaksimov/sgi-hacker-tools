@@ -9,3 +9,4 @@ export {
   addBlockHideUserOnUserPage,
   addBlockHideIconsObserver,
 } from "./blockHideUser/blockHideUser";
+export { killOrResurrectChatBro } from "./killChatBro/killChatBro";
