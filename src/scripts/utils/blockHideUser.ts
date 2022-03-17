@@ -8,11 +8,10 @@ export const toggleBlockHideUserIconState = (
     : (icon.src = chrome.runtime.getURL(`${iconName}.svg`));
 };
 
-const createBlockHideUserIcon = (action: "block" | "hide", user?: string) => {
+export const createBlockHideUserIcon = (action: "block" | "hide") => {
   const icon = document.createElement("img");
   icon.src = chrome.runtime.getURL(`user-${action}.svg`);
   icon.className = `sht-${action}-icon`;
-  if (user) icon.dataset.user = user;
   icon.addEventListener("mouseover", () =>
     toggleBlockHideUserIconState(icon, `user-${action}`, true)
   );
@@ -22,19 +21,12 @@ const createBlockHideUserIcon = (action: "block" | "hide", user?: string) => {
   return icon;
 };
 
-export const createOnlyBlockHideIcon = (
-  action: "block" | "hide",
-  user: string
-) => createBlockHideUserIcon(action, user);
-
 export const createBlockHideButton = (
   text: string,
-  action: "block" | "hide",
-  user: string
+  action: "block" | "hide"
 ) => {
   const wrapper = document.createElement("span");
   wrapper.className = `sht-${action}-user`;
-  wrapper.dataset.user = user;
   const icon = createBlockHideUserIcon(action);
   const actionText = document.createElement("span");
   actionText.textContent = text;
@@ -46,4 +38,11 @@ export const createBlockHideButton = (
   );
   wrapper.append(icon, actionText);
   return wrapper;
+};
+
+export const createBlockedMsgPlug = () => {
+  const plug = document.createElement("div");
+  plug.className = "sht-blocked-msg-plug";
+  plug.textContent = "Что-то сказал(а)...";
+  return plug;
 };

@@ -27,9 +27,12 @@ export const addShtMenu = () => {
   content.classList.add("w", "center");
   content.append(sadisticRepChange, chatBroKiller);
 
+  const blackList = document.createElement("div");
+  blackList.id = "sht-blackList";
+
   const menu = document.createElement("section");
   menu.id = "sht-menu";
-  menu.append(headingWrapper, arrow, content);
+  menu.append(headingWrapper, arrow, content, blackList);
 
   const sidebar = document.getElementById("r-sidebar");
   if (sidebar) {

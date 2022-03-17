@@ -1,10 +1,11 @@
 :root {
   --color-primary: #e3cc78;
   --color-alert: #f83030;
-  --color-alert-hover: #f8306c;
+  --color-alert-hover: #ff20d2;
   --color-warning: #e1b404;
   --color-action: #a49580;
   --color-action-hover: #b6ff00;
+  --color-regular: #b5b5b5;
 
   --indent-sm: 4px;
   --indent-md: 8px;
@@ -179,4 +180,11 @@
 
 .sht-hide {
   display: none;
+}
+
+.sht-blocked-msg-plug {
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color-regular);
+  padding: 5px 10px 10px 10px;
 }

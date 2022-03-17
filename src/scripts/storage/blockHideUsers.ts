@@ -8,9 +8,9 @@ export const getBlackList = (): Set<string> => {
     : new Set<string>();
 };
 
-export const blockHideUser = (user: string) => {
+export const blockHideUser = (userId: string, userName: string) => {
   const blackList = getBlackList();
-  blackList.add(user);
+  blackList.add(userId);
   setBlackList(blackList);
 };
 
@@ -18,4 +18,9 @@ export const unBlockHideUser = (user: string) => {
   const blackList = getBlackList();
   blackList.delete(user);
   setBlackList(blackList);
+};
+
+export const isUserInBlackList = (user: string) => {
+  const blackList = getBlackList();
+  return blackList.has(user);
 };

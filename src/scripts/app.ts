@@ -10,6 +10,7 @@ import {
   addBlockHideIconsObserver,
   addBlockHideUserOnUserPage,
   killOrResurrectChatBro,
+  hideMessages,
 } from "./features";
 import { renderBlackList } from "./features/blockHideUser/blockHideUser";
 
@@ -23,12 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
   switch (page) {
     case PATHS.FAQ:
       addBlockHideUserIcon();
+      hideMessages();
       addSendMeButton();
       addMessageCharsCounter();
       addBlockHideIconsObserver();
       break;
     case PATHS.GAME:
       addBlockHideUserIcon();
+      hideMessages();
       addSendMeButton();
       addMessageCharsCounter();
       increaseTorrentLinkSize();
