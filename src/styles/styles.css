@@ -183,8 +183,19 @@
 }
 
 .sht-blocked-msg-plug {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size);
   line-height: var(--line-height);
   color: var(--color-regular);
   padding: 5px 10px 10px 10px;
+}
+
+.sht-blocked-msg-plug > *:not(:last-child) {
+  margin-right: var(--indent-md);
+}
+
+.sht-blocked-msg-ava {
+  width: 24px;
+  height: 24px;
 }

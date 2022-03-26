@@ -7,7 +7,7 @@ import {
   addSadisticRepChange,
   addShtMenu,
   addBlockHideUserIcon,
-  addBlockHideIconsObserver,
+  addBlockHideObserver,
   addBlockHideUserOnUserPage,
   killOrResurrectChatBro,
   hideMessages,
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hideMessages();
       addSendMeButton();
       addMessageCharsCounter();
-      addBlockHideIconsObserver();
+      addBlockHideObserver();
       break;
     case PATHS.GAME:
       addBlockHideUserIcon();
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addSendMeButton();
       addMessageCharsCounter();
       increaseTorrentLinkSize();
-      addBlockHideIconsObserver();
+      addBlockHideObserver();
       break;
     case PATHS.USER:
       const user = urlParams.get("uid");

@@ -40,9 +40,15 @@ export const createBlockHideButton = (
   return wrapper;
 };
 
-export const createBlockedMsgPlug = () => {
+export const createBlockedMsgPlug = (avatar?: HTMLImageElement) => {
   const plug = document.createElement("div");
+  const text = document.createElement("span");
+  text.textContent = "Что-то сказал(а)...";
+  if (avatar) {
+    avatar.className = "sht-blocked-msg-ava";
+    plug.appendChild(avatar);
+  }
+  plug.appendChild(text);
   plug.className = "sht-blocked-msg-plug";
-  plug.textContent = "Что-то сказал(а)...";
   return plug;
 };

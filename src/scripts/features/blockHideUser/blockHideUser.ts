@@ -21,12 +21,27 @@ export const hideMessages = () => {
   const messages = document.querySelectorAll("#board > .message.clearfix");
   messages.forEach((msg) => {
     const msgContent = msg.querySelector(".tx");
+    const msgName = msg.querySelector(".name");
     const msgAva = msg.querySelector(".avka_repa");
-    if (!msgContent || !msgAva) return;
+    if (!msgContent) return;
 
     const userId = (msgContent as HTMLDivElement).dataset.userId;
-    debugger;
     if (!userId) return;
+
+    // if message is small
+    if (!msgAva || !msgName) {
+      const msgText = msgContent.childNodes[1];
+      if (!msgText.textContent) return;
+
+      if (!isUserInBlackList(userId)) {
+        const savedText = (msgContent as HTMLDivElement).dataset.text;
+        if (savedText) msgText.textContent = savedText;
+        return;
+      }
+
+      msgText.textContent = " Что-то сказал(а)...";
+      return;
+    }
 
     msg.querySelector(".sht-blocked-msg-plug")?.remove();
 
@@ -38,7 +53,9 @@ export const hideMessages = () => {
 
     msgContent.classList.add("sht-hide");
     msgAva.classList.add("sht-hide");
-    const plug = createBlockedMsgPlug();
+
+    const avatar = msgAva.querySelector("img")?.cloneNode() as HTMLImageElement;
+    const plug = createBlockedMsgPlug(avatar);
     msg.appendChild(plug);
   });
 };
@@ -46,31 +63,47 @@ export const hideMessages = () => {
 export const addBlockHideUserIcon = () => {
   const messages = document.querySelectorAll("#board > .message.clearfix");
   messages.forEach((msg) => {
-    const userName = msg.querySelector(
+    let isSmallMsg = false;
+    let userName = msg.querySelector(
       ".name > a:first-of-type"
-    ) as HTMLAnchorElement;
-    if (!userName) return;
+    ) as HTMLAnchorElement | null;
+    const msgContent = msg.querySelector(".tx") as HTMLDivElement;
+    if (!userName) {
+      isSmallMsg = true;
+      userName = msgContent.querySelector("a");
+    }
 
     const myId = getMyId();
-    const userId = getIdFromParams(userName.href);
+    const userId = getIdFromParams(userName!.href);
     if (!userId) return;
+    msgContent.dataset.userId = userId;
+
+    // if message is small
+    const msgName = msg.querySelector(".name");
+    const msgAva = msg.querySelector(".avka_repa");
+    if (!msgAva || !msgName) {
+      const msgText = msgContent.childNodes[1];
+      msgContent.dataset.text = msgText.textContent
+        ? msgText.textContent
+        : undefined;
+    }
+
+    const userNick = msgContent.dataset.nick!;
+
+    if (isSmallMsg) return;
 
     const action = myId === userId ? "hide" : "block";
     const icon = createBlockHideUserIcon(action);
-
-    const msgContent = msg.querySelector(".tx") as HTMLDivElement;
-    msgContent.dataset.userId = userId;
-    const userNick = msgContent.dataset.nick!;
     icon.addEventListener("click", () => {
       blockHideUser(userId, userNick);
       hideMessages();
       renderBlackList();
     });
-    insertAfter(icon, userName);
+    insertAfter(icon, userName!);
   });
 };
 
-export const addBlockHideIconsObserver = () => {
+export const addBlockHideObserver = () => {
   const board = document.getElementById("board");
   const observer = new MutationObserver((mutations, observer) => {
     const addedNodes = Array.from(mutations[0].addedNodes);
@@ -81,6 +114,7 @@ export const addBlockHideIconsObserver = () => {
     )
       return;
     addBlockHideUserIcon();
+    hideMessages();
   });
   if (board)
     observer.observe(board, {

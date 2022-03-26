@@ -7,7 +7,7 @@ export { addShtMenu } from "./shtMenu/shtMenu";
 export {
   addBlockHideUserIcon,
   addBlockHideUserOnUserPage,
-  addBlockHideIconsObserver,
+  addBlockHideObserver,
   hideMessages,
 } from "./blockHideUser/blockHideUser";
 export { killOrResurrectChatBro } from "./killChatBro/killChatBro";
