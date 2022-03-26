@@ -138,11 +138,14 @@
   cursor: pointer;
 }
 
-.sht-block-icon,
-.sht-hide-icon {
+.sht-icon {
   width: 18px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.sht-icon.sht-unblock-icon {
+  width: 16px;
 }
 
 .sht-block-user,

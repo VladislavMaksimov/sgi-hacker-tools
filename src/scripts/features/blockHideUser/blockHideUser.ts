@@ -2,12 +2,14 @@ import {
   clear,
   createBlockedMsgPlug,
   createBlockHideButton,
-  createBlockHideUserIcon,
+  createIcon,
   getIdFromParams,
   getMyId,
   getURLId,
   getUserNameFromPage,
+  ICON_ACTION,
   insertAfter,
+  removeIconFromParent,
 } from "../../utils";
 import { TEXT_BLOCK_USER, TEXT_HIDE_SELF } from "./constants";
 import {
@@ -63,15 +65,11 @@ export const hideMessages = () => {
 export const addBlockHideUserIcon = () => {
   const messages = document.querySelectorAll("#board > .message.clearfix");
   messages.forEach((msg) => {
-    let isSmallMsg = false;
     let userName = msg.querySelector(
       ".name > a:first-of-type"
     ) as HTMLAnchorElement | null;
     const msgContent = msg.querySelector(".tx") as HTMLDivElement;
-    if (!userName) {
-      isSmallMsg = true;
-      userName = msgContent.querySelector("a");
-    }
+    if (!userName) userName = msgContent.querySelector("a");
 
     const myId = getMyId();
     const userId = getIdFromParams(userName!.href);
@@ -86,18 +84,31 @@ export const addBlockHideUserIcon = () => {
       msgContent.dataset.text = msgText.textContent
         ? msgText.textContent
         : undefined;
+      return;
+    }
+
+    removeIconFromParent(msgName as HTMLElement);
+    const isUserMe = myId === userId;
+
+    if (isUserInBlackList(userId)) {
+      const action = isUserMe ? ICON_ACTION.UNHIDE : ICON_ACTION.UNBLOCK;
+      const icon = createIcon(action, () => {
+        unBlockHideUser(userId);
+        hideMessages();
+        renderBlackList();
+        addBlockHideUserIcon();
+      });
+      insertAfter(icon, userName!);
+      return;
     }
 
     const userNick = msgContent.dataset.nick!;
-
-    if (isSmallMsg) return;
-
-    const action = myId === userId ? "hide" : "block";
-    const icon = createBlockHideUserIcon(action);
-    icon.addEventListener("click", () => {
+    const action = isUserMe ? ICON_ACTION.HIDE : ICON_ACTION.BLOCK;
+    const icon = createIcon(action, () => {
       blockHideUser(userId, userNick);
       hideMessages();
       renderBlackList();
+      addBlockHideUserIcon();
     });
     insertAfter(icon, userName!);
   });
@@ -140,7 +151,7 @@ export const addBlockHideUserOnUserPage = () => {
 
   // on user's page
   if (myId === urlId) {
-    const hideButton = createBlockHideButton(TEXT_HIDE_SELF, "hide");
+    const hideButton = createBlockHideButton(TEXT_HIDE_SELF, ICON_ACTION.HIDE);
     hideButton.addEventListener("click", () => {
       blockHideUser(myId, userName);
       hideMessages();
@@ -151,7 +162,7 @@ export const addBlockHideUserOnUserPage = () => {
   }
 
   // on another user's page
-  const blockButton = createBlockHideButton(TEXT_BLOCK_USER, "block");
+  const blockButton = createBlockHideButton(TEXT_BLOCK_USER, ICON_ACTION.BLOCK);
   blockButton.addEventListener("click", () => {
     blockHideUser(urlId, userName);
     hideMessages();

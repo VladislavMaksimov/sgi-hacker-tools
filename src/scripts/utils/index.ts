@@ -3,11 +3,12 @@ export { insertAfter } from "./insertAfter";
 export { getIdFromParams, getMyId, getURLId } from "./myId";
 export { isTorrentLink } from "./defineLink";
 export { createShtMenuItem } from "./shtMenu";
-export {
-  toggleBlockHideUserIconState,
-  createBlockHideButton,
-  createBlockHideUserIcon,
-  createBlockedMsgPlug,
-} from "./blockHideUser";
+export { createBlockHideButton, createBlockedMsgPlug } from "./blockHideUser";
 export { clear } from "./clear";
 export { getUserNameFromPage } from "./userInfo";
+export {
+  ICON_ACTION,
+  toggleIconState,
+  createIcon,
+  removeIconFromParent,
+} from "./icons";

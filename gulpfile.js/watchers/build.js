@@ -5,7 +5,7 @@ const build = require("../tasks/build").default;
 const watchBuild = () =>
   watch(
     [paths.ts.allFiles, paths.css, paths.assets],
-    { events: ["add", "change", "unlink"] },
+    { events: ["add", "change", "unlink"], ignoreInitial: false },
     build
   );
 

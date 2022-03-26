@@ -18,7 +18,11 @@
         "user-block.svg",
         "user-block-hover.svg",
         "user-hide.svg",
-        "user-hide-hover.svg"
+        "user-hide-hover.svg",
+        "user-unhide.svg",
+        "user-unhide-hover.svg",
+        "user-unblock.svg",
+        "user-unblock-hover.svg"
       ],
       "matches": [
         "https://small-games.info/*"
