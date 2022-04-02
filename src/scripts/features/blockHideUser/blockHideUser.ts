@@ -154,7 +154,7 @@ interface IButtonFuncs {
     userName: string,
     onClick: IButtonFuncs,
     prevSibling: HTMLElement,
-    prevButton?: HTMLSpanElement
+    prevButton?: HTMLSpanElement | null
   ): void;
 }
 
@@ -229,25 +229,35 @@ export const addBlockHideUserOnUserPage = () => {
     renderBlackList(true);
   };
 
+  const prevButton = document.querySelector(
+    ".sht-ban-hide-button"
+  ) as HTMLSpanElement | null;
+
   // on user's page
   if (myId === urlId) {
     renderButton(
-      USERS_BLACKLIST_ACTIONS.HIDE,
+      isUserInBlackList(urlId)
+        ? USERS_BLACKLIST_ACTIONS.UNHIDE
+        : USERS_BLACKLIST_ACTIONS.HIDE,
       myId,
       userName,
       onClick,
-      sendPrivateMessage
+      sendPrivateMessage,
+      prevButton
     );
     return;
   }
 
   // on another user's page
   renderButton(
-    USERS_BLACKLIST_ACTIONS.BLOCK,
+    isUserInBlackList(urlId)
+      ? USERS_BLACKLIST_ACTIONS.UNBLOCK
+      : USERS_BLACKLIST_ACTIONS.BLOCK,
     urlId,
     userName,
     onClick,
-    sendPrivateMessage
+    sendPrivateMessage,
+    prevButton
   );
 };
 
@@ -283,6 +293,7 @@ export const renderBlackList = (onUserPage?: boolean) => {
       renderBlackList(onUserPage);
       hideMessages(onUserPage);
       if (!onUserPage) addBlockHideUserIcon();
+      else addBlockHideUserOnUserPage();
     });
     shtBlackList.appendChild(shtMenuBlockedUser);
   });
