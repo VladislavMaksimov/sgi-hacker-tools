@@ -1,6 +1,11 @@
 import { TEXT } from "./constants";
 import { createShtMenuItem } from "../../utils";
 import { addChatBroKiller } from "../killChatBro/killChatBro";
+import {
+  isRepChangeSadistic,
+  makeRepChangeNotSadistic,
+  makeRepChangeSadistic,
+} from "../../storage";
 
 export const addShtMenu = () => {
   const headingWrapper = document.createElement("h2");
@@ -15,9 +20,9 @@ export const addShtMenu = () => {
 
   const sadisticRepChange = createShtMenuItem(
     TEXT.SADISTIC_REP_CHANGE.LABEL,
-    () => localStorage.setItem("sadistic", "true"),
-    () => localStorage.removeItem("sadistic"),
-    localStorage.getItem("sadistic") !== null,
+    makeRepChangeSadistic,
+    makeRepChangeNotSadistic,
+    isRepChangeSadistic(),
     TEXT.SADISTIC_REP_CHANGE.TOOLTIP_TEXT
   );
 
