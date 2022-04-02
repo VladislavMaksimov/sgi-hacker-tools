@@ -1,9 +1,4 @@
-export enum ICON_ACTION {
-  BLOCK = "block",
-  HIDE = "hide",
-  UNBLOCK = "unblock",
-  UNHIDE = "unhide",
-}
+import { USERS_BLACKLIST_ACTIONS } from "../storage";
 
 export const toggleIconState = (
   icon: HTMLImageElement,
@@ -15,7 +10,10 @@ export const toggleIconState = (
     : (icon.src = chrome.runtime.getURL(`${iconName}.svg`));
 };
 
-export const createIcon = (action: ICON_ACTION, onClick?: () => void) => {
+export const createIcon = (
+  action: USERS_BLACKLIST_ACTIONS,
+  onClick?: () => void
+) => {
   const icon = document.createElement("img");
   icon.src = chrome.runtime.getURL(`user-${action}.svg`);
   icon.classList.add("sht-icon", `sht-${action}-icon`);

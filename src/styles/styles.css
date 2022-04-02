@@ -2,6 +2,8 @@
   --color-primary: #e3cc78;
   --color-alert: #f83030;
   --color-alert-hover: #ff20d2;
+  --color-okay: #99d642;
+  --color-okay-hover: #b6ff00;
   --color-warning: #e1b404;
   --color-action: #a49580;
   --color-action-hover: #b6ff00;
@@ -148,11 +150,27 @@
   width: 16px;
 }
 
-.sht-block-user,
-.sht-hide-user {
+#board .name .sht-icon.sht-unblock-icon {
+  margin: 1px 5px;
+}
+
+.sht-ban-hide-button {
   font-weight: bold;
   margin-left: var(--indent-lg);
   cursor: pointer;
+  vertical-align: bottom;
+}
+
+.sht-ban-hide-button > .sht-icon {
+  vertical-align: bottom;
+}
+
+.sht-ban-hide-button > *:not(:last-child) {
+  margin-right: var(--indent-sm);
+}
+
+.sht-ban-hide-button .sht-icon.sht-unblock-icon {
+  width: 18px;
 }
 
 .sht-block-user {
@@ -163,22 +181,22 @@
   color: var(--color-alert-hover);
 }
 
-.sht-hide-user {
+.sht-unblock-user {
+  color: var(--color-okay);
+}
+
+.sht-unblock-user:hover {
+  color: var(--color-okay-hover);
+}
+
+.sht-hide-user,
+.sht-unhide-user {
   color: var(--color-action);
 }
 
-.sht-hide-user:hover {
+.sht-hide-user:hover,
+.sht-unhide-user:hover {
   color: var(--color-action-hover);
-}
-
-.sht-block-user > .sht-block-icon,
-.sht-hide-user > .sht-hide-icon {
-  vertical-align: bottom;
-}
-
-.sht-block-user > *:not(:last-child),
-.sht-hide-user > *:not(:last-child) {
-  margin-right: var(--indent-sm);
 }
 
 .sht-hide {

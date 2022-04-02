@@ -11,8 +11,9 @@ import {
   addBlockHideUserOnUserPage,
   killOrResurrectChatBro,
   hideMessages,
+  renderBlackList,
+  saveSmallMsgTextsOnUserPage,
 } from "./features";
-import { renderBlackList } from "./features/blockHideUser/blockHideUser";
 
 const urlParams = new URLSearchParams(window.location.search);
 const page = urlParams.get("go");
@@ -20,9 +21,9 @@ const page = urlParams.get("go");
 document.addEventListener("DOMContentLoaded", () => {
   killOrResurrectChatBro();
   addShtMenu();
-  renderBlackList();
   switch (page) {
     case PATHS.FAQ:
+      renderBlackList();
       addBlockHideUserIcon();
       hideMessages();
       addSendMeButton();
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addBlockHideObserver();
       break;
     case PATHS.GAME:
+      renderBlackList();
       addBlockHideUserIcon();
       hideMessages();
       addSendMeButton();
@@ -44,6 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
           addBotPunishment();
           break;
         default:
+          renderBlackList(true);
+          saveSmallMsgTextsOnUserPage();
+          hideMessages(true);
           addBlockHideUserOnUserPage();
           addSadisticRepChange();
           break;

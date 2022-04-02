@@ -1,3 +1,10 @@
+export enum USERS_BLACKLIST_ACTIONS {
+  BLOCK = "block",
+  HIDE = "hide",
+  UNBLOCK = "unblock",
+  UNHIDE = "unhide",
+}
+
 const setBlackList = (blackList: Set<string>) =>
   localStorage.setItem("blackList", JSON.stringify(Array.from(blackList)));
 

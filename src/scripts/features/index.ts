@@ -9,5 +9,7 @@ export {
   addBlockHideUserOnUserPage,
   addBlockHideObserver,
   hideMessages,
+  saveSmallMsgTextsOnUserPage,
+  renderBlackList,
 } from "./blockHideUser/blockHideUser";
 export { killOrResurrectChatBro } from "./killChatBro/killChatBro";
