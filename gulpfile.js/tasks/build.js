@@ -28,6 +28,7 @@ const buildScripts = () =>
       })
     )
     .pipe(replace("process.env.BASE", `"${process.env.BASE}"`))
+    .pipe(replace("process.env.SUPPORT", `"${process.env.SUPPORT}"`))
     .pipe(dest(paths.build));
 
 const copyManifest = () => src(paths.manifest).pipe(dest(paths.build));

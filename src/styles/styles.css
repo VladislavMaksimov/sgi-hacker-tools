@@ -220,3 +220,14 @@
   width: 24px;
   height: 24px;
 }
+
+.sht-support-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--indent-sm);
+}
+
+.sht-support {
+  font-weight: bold;
+  font-size: var(--font-size);
+}

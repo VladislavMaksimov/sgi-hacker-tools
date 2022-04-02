@@ -23,16 +23,24 @@ export const addShtMenu = () => {
 
   const chatBroKiller = addChatBroKiller();
 
-  const content = document.createElement("div");
-  content.classList.add("w", "center");
-  content.append(sadisticRepChange, chatBroKiller);
-
   const blackList = document.createElement("div");
   blackList.id = "sht-blackList";
 
+  const support = document.createElement("a");
+  support.href = process.env.SUPPORT!;
+  support.textContent = TEXT.SUPPORT;
+  support.className = "sht-support";
+  const supportWrapper = document.createElement("div");
+  supportWrapper.className = "sht-support-wrapper";
+  supportWrapper.appendChild(support);
+
+  const content = document.createElement("div");
+  content.classList.add("w", "center");
+  content.append(sadisticRepChange, chatBroKiller, blackList, supportWrapper);
+
   const menu = document.createElement("section");
   menu.id = "sht-menu";
-  menu.append(headingWrapper, arrow, content, blackList);
+  menu.append(headingWrapper, arrow, content);
 
   const sidebar = document.getElementById("r-sidebar");
   if (sidebar) {
