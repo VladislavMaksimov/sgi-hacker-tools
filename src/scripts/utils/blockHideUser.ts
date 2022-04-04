@@ -1,4 +1,4 @@
-import { createIcon, toggleIconState } from "./icons";
+import { createActionIcon, toggleActionIconState } from "./icons";
 import { USERS_BLACKLIST_ACTIONS } from "../storage";
 
 export const createBlockHideButton = (
@@ -8,15 +8,15 @@ export const createBlockHideButton = (
 ) => {
   const wrapper = document.createElement("span");
   wrapper.classList.add("sht-ban-hide-button", `sht-${action}-user`);
-  const icon = createIcon(action);
+  const icon = createActionIcon(action);
   const actionText = document.createElement("span");
   actionText.textContent = text;
   wrapper.addEventListener("click", cb);
   wrapper.addEventListener("mouseover", () =>
-    toggleIconState(icon, `user-${action}`, true)
+    toggleActionIconState(icon, `user-${action}`, true)
   );
   wrapper.addEventListener("mouseout", () =>
-    toggleIconState(icon, `user-${action}`, false)
+    toggleActionIconState(icon, `user-${action}`, false)
   );
   wrapper.append(icon, actionText);
   return wrapper;

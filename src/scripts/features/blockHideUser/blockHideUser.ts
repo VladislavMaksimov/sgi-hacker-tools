@@ -2,13 +2,14 @@ import {
   clear,
   createBlockedMsgPlug,
   createBlockHideButton,
-  createIcon,
+  createActionIcon,
   getIdFromParams,
   getMyId,
   getURLId,
   getUserNameFromPage,
   insertAfter,
-  removeIconFromParent,
+  removeActionIconFromParent,
+  createIcon,
 } from "../../utils";
 import { TEXT } from "./constants";
 import {
@@ -94,14 +95,14 @@ export const addBlockHideUserIcon = () => {
       return;
     }
 
-    removeIconFromParent(msgName as HTMLElement);
+    removeActionIconFromParent(msgName as HTMLElement);
     const isUserMe = myId === userId;
 
     if (isUserInBlackList(userId)) {
       const action = isUserMe
         ? USERS_BLACKLIST_ACTIONS.UNHIDE
         : USERS_BLACKLIST_ACTIONS.UNBLOCK;
-      const icon = createIcon(action, () => {
+      const icon = createActionIcon(action, () => {
         unBlockHideUser(userId);
         hideMessages();
         renderBlackList();
@@ -115,7 +116,7 @@ export const addBlockHideUserIcon = () => {
     const action = isUserMe
       ? USERS_BLACKLIST_ACTIONS.HIDE
       : USERS_BLACKLIST_ACTIONS.BLOCK;
-    const icon = createIcon(action, () => {
+    const icon = createActionIcon(action, () => {
       blockHideUser(userId, userNick);
       hideMessages();
       renderBlackList();
@@ -280,21 +281,40 @@ export const saveSmallMsgTextsOnUserPage = () => {
 };
 
 export const renderBlackList = (onUserPage?: boolean) => {
-  const shtBlackList = document.getElementById("sht-blackList");
+  const shtBlackList = document.getElementById("sht-blackList-content");
   if (!shtBlackList) return;
   clear(shtBlackList);
   const blackList = getBlackList();
-  if (!blackList || blackList.size === 0) return;
-  blackList.forEach((item) => {
-    const shtMenuBlockedUser = document.createElement("p");
-    shtMenuBlockedUser.textContent = item;
+
+  if (!blackList || blackList.size === 0) {
+    const noBlockedUsersPlug = document.createElement("span");
+    noBlockedUsersPlug.textContent = TEXT.NO_BLOCKED_USERS;
+    noBlockedUsersPlug.className = "sht-blackList-item";
+    shtBlackList.appendChild(noBlockedUsersPlug);
+    return;
+  }
+
+  blackList.forEach((value, key) => {
+    const shtMenuBlockedUser = document.createElement("span");
+    shtMenuBlockedUser.dataset.id = key;
+    shtMenuBlockedUser.classList.add("sht-blackList-item", "sht-clickable");
     shtMenuBlockedUser.addEventListener("click", () => {
-      unBlockHideUser(item);
+      unBlockHideUser(key);
       renderBlackList(onUserPage);
       hideMessages(onUserPage);
       if (!onUserPage) addBlockHideUserIcon();
       else addBlockHideUserOnUserPage();
     });
-    shtBlackList.appendChild(shtMenuBlockedUser);
+
+    const minusIcon = createIcon("minus.svg");
+    const userName = document.createElement("span");
+    userName.textContent = value;
+    shtMenuBlockedUser.append(minusIcon, userName);
+
+    const shtMenuBlockedUserWrapper = document.createElement("p");
+    shtMenuBlockedUserWrapper.className = "sht-blackList-item-wrapper";
+    shtMenuBlockedUserWrapper.appendChild(shtMenuBlockedUser);
+
+    shtBlackList.appendChild(shtMenuBlockedUserWrapper);
   });
 };

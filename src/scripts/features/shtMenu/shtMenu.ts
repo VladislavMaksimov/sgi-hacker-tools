@@ -30,6 +30,11 @@ export const addShtMenu = () => {
 
   const blackList = document.createElement("div");
   blackList.id = "sht-blackList";
+  const blackListContent = document.createElement("section");
+  blackListContent.id = "sht-blackList-content";
+  const blHeading = document.createElement("h4");
+  blHeading.textContent = TEXT.BLACKLIST;
+  blackList.append(blHeading, blackListContent);
 
   const support = document.createElement("a");
   support.href = process.env.SUPPORT!;

@@ -5,29 +5,29 @@ export enum USERS_BLACKLIST_ACTIONS {
   UNHIDE = "unhide",
 }
 
-const setBlackList = (blackList: Set<string>) =>
+const setBlackList = (blackList: Map<string, string>) =>
   localStorage.setItem("blackList", JSON.stringify(Array.from(blackList)));
 
-export const getBlackList = (): Set<string> => {
+export const getBlackList = (): Map<string, string> => {
   const blackList = localStorage.getItem("blackList");
   return blackList
-    ? new Set(Array.from(JSON.parse(blackList)))
-    : new Set<string>();
+    ? new Map(Array.from(JSON.parse(blackList)))
+    : new Map<string, string>();
 };
 
 export const blockHideUser = (userId: string, userName: string) => {
   const blackList = getBlackList();
-  blackList.add(userId);
+  blackList.set(userId, userName);
   setBlackList(blackList);
 };
 
-export const unBlockHideUser = (user: string) => {
+export const unBlockHideUser = (userId: string) => {
   const blackList = getBlackList();
-  blackList.delete(user);
+  blackList.delete(userId);
   setBlackList(blackList);
 };
 
-export const isUserInBlackList = (user: string) => {
+export const isUserInBlackList = (userId: string) => {
   const blackList = getBlackList();
-  return blackList.has(user);
+  return blackList.has(userId);
 };

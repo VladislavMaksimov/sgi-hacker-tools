@@ -5,4 +5,5 @@ export const TEXT = {
   [USERS_BLACKLIST_ACTIONS.HIDE]: "Скрыть сообщения",
   [USERS_BLACKLIST_ACTIONS.UNBLOCK]: "Разблокировать пользователя",
   [USERS_BLACKLIST_ACTIONS.UNHIDE]: "Показать сообщения",
+  NO_BLOCKED_USERS: "Пока здесь пусто...",
 };

@@ -6,4 +6,9 @@ export { createShtMenuItem } from "./shtMenu";
 export { createBlockHideButton, createBlockedMsgPlug } from "./blockHideUser";
 export { clear } from "./clear";
 export { getUserNameFromPage } from "./userInfo";
-export { toggleIconState, createIcon, removeIconFromParent } from "./icons";
+export {
+  toggleActionIconState,
+  createActionIcon,
+  removeActionIconFromParent,
+  createIcon,
+} from "./icons";
