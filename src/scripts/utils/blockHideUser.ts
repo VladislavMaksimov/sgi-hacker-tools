@@ -34,3 +34,13 @@ export const createBlockedMsgPlug = (avatar?: HTMLImageElement) => {
   plug.className = "sht-blocked-msg-plug";
   return plug;
 };
+
+export const createBlockedMeMsgPlug = (name?: HTMLAnchorElement) => {
+  const plug = document.createElement("div");
+  plug.className = "sht-blocked-me-msg-plug";
+  const text = document.createElement("span");
+  text.textContent = "что-то сказал(а)...";
+  if (name) plug.append(name, " ", text);
+  else plug.appendChild(text);
+  return plug;
+};

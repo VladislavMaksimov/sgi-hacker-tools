@@ -12,7 +12,6 @@ import {
   killOrResurrectChatBro,
   hideMessages,
   renderBlackList,
-  saveSmallMsgTextsOnUserPage,
 } from "./features";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         default:
           renderBlackList(true);
-          saveSmallMsgTextsOnUserPage();
           hideMessages(true);
           addBlockHideUserOnUserPage();
           addSadisticRepChange();

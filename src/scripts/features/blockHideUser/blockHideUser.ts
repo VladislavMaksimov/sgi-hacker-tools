@@ -10,6 +10,7 @@ import {
   insertAfter,
   removeActionIconFromParent,
   createIcon,
+  createBlockedMeMsgPlug,
 } from "../../utils";
 import { TEXT } from "./constants";
 import {
@@ -40,16 +41,23 @@ export const hideMessages = (onUserPage?: boolean) => {
 
     // if message is small
     if (!msgAva || !msgName) {
-      const msgText = msgContent.childNodes[1];
-      if (!msgText.textContent) return;
+      // const msgText = msgContent.childNodes[1];
+      // if (!msgText.textContent) return;
+      msg.querySelector(".sht-blocked-me-msg-plug")?.remove();
 
       if (!isUserInBlackList(userId!)) {
-        const savedText = (msgContent as HTMLDivElement).dataset.text;
-        if (savedText) msgText.textContent = savedText;
+        msgContent.classList.remove("sht-hide");
         return;
       }
 
-      msgText.textContent = " Что-то сказал(а)...";
+      msgContent.classList.add("sht-hide");
+
+      const name = msgContent.querySelector("a")!;
+      const plug = createBlockedMeMsgPlug(
+        name.cloneNode(true) as HTMLAnchorElement
+      );
+
+      insertAfter(plug, msgContent);
       return;
     }
 
@@ -87,13 +95,7 @@ export const addBlockHideUserIcon = () => {
     // if message is small
     const msgName = msg.querySelector(".name");
     const msgAva = msg.querySelector(".avka_repa");
-    if (!msgAva || !msgName) {
-      const msgText = msgContent.childNodes[1];
-      msgContent.dataset.text = msgText.textContent
-        ? msgText.textContent
-        : undefined;
-      return;
-    }
+    if (!msgAva || !msgName) return;
 
     removeActionIconFromParent(msgName as HTMLElement);
     const isUserMe = myId === userId;
@@ -260,24 +262,6 @@ export const addBlockHideUserOnUserPage = () => {
     sendPrivateMessage,
     prevButton
   );
-};
-
-export const saveSmallMsgTextsOnUserPage = () => {
-  const messages = document.querySelectorAll("#board > .message.clearfix");
-
-  messages.forEach((msg) => {
-    const msgContent = msg.querySelector(".tx") as HTMLDivElement;
-    const msgName = msg.querySelector(".name");
-    const msgAva = msg.querySelector(".avka_repa");
-
-    // if message isn't small or hasn't content
-    if (msgName || msgAva || !msgContent) return;
-
-    const msgText = msgContent.childNodes[1];
-    msgContent.dataset.text = msgText.textContent
-      ? msgText.textContent
-      : undefined;
-  });
 };
 
 export const renderBlackList = (onUserPage?: boolean) => {

@@ -13,6 +13,7 @@
   --indent-md: 8px;
   --indent-lg: 16px;
 
+  --font-size-sgi: 8pt;
   --font-size: 12px;
   --line-height: 20px;
   --font-size-lg: 20px;
@@ -285,4 +286,11 @@
 
 .sht-clickable {
   cursor: pointer;
+}
+
+.sht-blocked-me-msg-plug {
+  margin-left: 110px;
+  padding: 10px;
+  color: var(--color-regular);
+  font-size: var(--font-size-sgi);
 }
