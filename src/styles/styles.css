@@ -231,7 +231,6 @@
   display: flex;
   justify-content: center;
   padding: var(--indent-sm);
-  margin-top: var(--indent-md);
 }
 
 .sht-support {
@@ -293,4 +292,23 @@
   padding: 10px;
   color: var(--color-regular);
   font-size: var(--font-size-sgi);
+}
+
+.sht-contacts {
+  display: flex;
+  justify-content: center;
+  padding: var(--indent-sm);
+  margin-top: var(--indent-lg);
+}
+
+.sht-contacts img,
+.sht-contacts a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sht-contacts > *:not(:last-child) {
+  margin-right: 10px;
 }

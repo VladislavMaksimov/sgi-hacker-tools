@@ -44,9 +44,39 @@ export const addShtMenu = () => {
   supportWrapper.className = "sht-support-wrapper";
   supportWrapper.appendChild(support);
 
+  // contacts
+
+  const vkLink = document.createElement("a");
+  vkLink.href = process.env.VK!;
+  const vkIcon = document.createElement("img");
+  vkIcon.src = chrome.runtime.getURL("vk.svg");
+  vkLink.appendChild(vkIcon);
+
+  const tgLink = document.createElement("a");
+  tgLink.href = process.env.TELEGRAM!;
+  const tgIcon = document.createElement("img");
+  tgIcon.src = chrome.runtime.getURL("telegram.svg");
+  tgLink.appendChild(tgIcon);
+
+  const ghLink = document.createElement("a");
+  ghLink.href = process.env.GITHUB!;
+  const ghIcon = document.createElement("img");
+  ghIcon.src = chrome.runtime.getURL("github.svg");
+  ghLink.appendChild(ghIcon);
+
+  const contacts = document.createElement("div");
+  contacts.className = "sht-contacts";
+  contacts.append(vkLink, tgLink, ghLink);
+
   const content = document.createElement("div");
   content.classList.add("w", "center");
-  content.append(sadisticRepChange, chatBroKiller, blackList, supportWrapper);
+  content.append(
+    sadisticRepChange,
+    chatBroKiller,
+    blackList,
+    contacts,
+    supportWrapper
+  );
 
   const menu = document.createElement("section");
   menu.id = "sht-menu";

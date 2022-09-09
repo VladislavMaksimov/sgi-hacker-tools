@@ -30,6 +30,9 @@ const buildScripts = () =>
     )
     .pipe(replace("process.env.BASE", `"${process.env.BASE}"`))
     .pipe(replace("process.env.SUPPORT", `"${process.env.SUPPORT}"`))
+    .pipe(replace("process.env.VK", `"${process.env.VK}"`))
+    .pipe(replace("process.env.TELEGRAM", `"${process.env.TELEGRAM}"`))
+    .pipe(replace("process.env.GITHUB", `"${process.env.GITHUB}"`))
     .pipe(dest(paths.build));
 
 const copyManifest = () => src(paths.manifest).pipe(dest(paths.build));
