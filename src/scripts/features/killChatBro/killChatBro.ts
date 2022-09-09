@@ -4,10 +4,22 @@ import {
   setChatBroAlive,
   setChatBroDead,
 } from "../../storage";
+import { setTimer } from "../../utils/timer";
 
 const killChatBro = () => {
-  const chatBro = document.querySelector(".chatbro_container");
-  if (chatBro) chatBro.classList.add("sht-hide");
+  let chatBro: HTMLElement | null = null;
+
+  const findChatBro = () => {
+    chatBro = document.querySelector(".chatbro_container");
+    return !!chatBro;
+  };
+
+  const tryToKillChatBro = () => {
+    if (chatBro) chatBro.classList.add("sht-hide");
+  };
+
+  // if chatbro is rendered fires tryToKillChatBro once
+  setTimer(() => void 0, findChatBro, 100, tryToKillChatBro);
 };
 
 const resurrectChatBro = () => {
