@@ -1,4 +1,3 @@
-// const Cookies = require("js-cookie");
 import Cookies from "js-cookie";
 import { PATHS, USERS } from "./constants";
 import {
@@ -59,6 +58,7 @@ if (typeof logged !== "undefined") {
         }
         break;
       default:
+        renderBlackList();
         break;
     }
   });

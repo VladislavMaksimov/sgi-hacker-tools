@@ -23,6 +23,7 @@ const buildScripts = () =>
     .pipe(
       esBuild({
         outfile: filenames.js,
+        target: "es6",
         bundle: true,
         tsconfig: paths.ts.config,
       })
